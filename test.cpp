@@ -39,7 +39,7 @@ void test_setup()
       prev->link = value;
     }
     value->a    = i * 1.5f;
-    value->b    = i;
+    value->b    = -i;
     value->link = NULL;
     prev = value;
   }
@@ -67,6 +67,12 @@ void output_foo( JsonWriteScope* parent_scope, Foo* foo, const char* foo_name )
 
   json.WriteDouble( foo->a, "a" ); 
   json.WriteInt( foo->b, "b" ); 
+  json.WriteUInt( foo->b, "ub" ); 
+
+  if ( foo->b & 0x01 )
+  {
+    json.WriteBool( true, "IsOdd" ); 
+  }
 
   if ( foo->link )
   {
