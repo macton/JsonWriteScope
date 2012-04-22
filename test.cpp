@@ -65,8 +65,8 @@ void output_foo( JsonWriteScope* parent_scope, Foo* foo, const char* foo_name )
 {
   JsonWriteScopeObject json( parent_scope, foo_name );
 
-  json.WriteDouble( foo->a ); 
-  json.WriteInt( foo->b ); 
+  json.WriteDouble( foo->a, "a" ); 
+  json.WriteInt( foo->b, "b" ); 
 
   if ( foo->link )
   {
