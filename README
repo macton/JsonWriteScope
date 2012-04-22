@@ -1,6 +1,10 @@
 Scope-based utility for writing JSON data to character buffer
 Designed to be super simple to use and not carry any actual JSON parsing overhead.
-<macton@insomniacgames.com>
+
+- Probably the most obnoxious thing about the JSON format is not handling of trailing commas. 
+- So many parsers would be much simpler if that was supported!
+- See also: http://en.wikipedia.org/wiki/JSON
+- macton@insomniacgames.com
 
 License
 -------
