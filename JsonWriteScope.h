@@ -39,16 +39,20 @@ class JsonWriteScope
 
       if ( name )
       {
-        int out_size = sprintf( m_Output, "\"%s\": %f", name, value );
+        int out_size = sprintf( m_Output, "\"%s\": %g", name, value );
         m_Output     += out_size;
         m_OutputSize += out_size;
       }
       else
       {
-        int out_size = sprintf( m_Output, "%f", value );
+        int out_size = sprintf( m_Output, "%g", value );
         m_Output     += out_size;
         m_OutputSize += out_size;
       }
+    }
+    void WriteFloat( float value, const char* name = NULL )
+    {
+      WriteDouble( value, name );
     }
     void WriteUInt( unsigned int value, const char* name = NULL )
     {
