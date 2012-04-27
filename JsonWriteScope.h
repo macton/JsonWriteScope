@@ -16,7 +16,16 @@ class JsonWriteScope
     ~JsonWriteScope()
     {
     }
-
+    JsonWriteScope& operator=( const JsonWriteScope& that )
+    {
+      if ( this != &that )
+      {
+        m_Output = that.m_Output;
+        m_OutputSize = that.m_OutputSize;
+        m_FirstElement = that.m_FirstElement;
+      }
+      return *this;
+    }
     void WriteComma()
     {
       if (!m_FirstElement)
@@ -51,7 +60,7 @@ class JsonWriteScope
     {
       WriteDouble( value, name );
     }
-    void WriteUInt( unsigned int value, const char* name = NULL )
+    void WriteUInt32( uint32_t value, const char* name = NULL )
     {
       WriteComma();
 
@@ -68,7 +77,7 @@ class JsonWriteScope
         m_OutputSize += out_size;
       }
     }
-    void WriteInt( unsigned int value, const char* name = NULL )
+    void WriteInt32( int32_t value, const char* name = NULL )
     {
       WriteComma();
 
@@ -84,6 +93,14 @@ class JsonWriteScope
         m_Output     += out_size;
         m_OutputSize += out_size;
       }
+    }
+    void WritePointer( void* value, const char* name = NULL )
+    {
+      char pointer_string[ 32 ];
+
+      sprintf( pointer_string, "0x%p", value );
+
+      WriteString( pointer_string, name );
     }
     void WriteString( const char* value, const char* name = NULL )
     {

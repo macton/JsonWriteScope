@@ -7,9 +7,9 @@ struct Foo;
 
 struct Foo
 {
-  float a;
-  int   b;
-  Foo*  link;
+  float   a;
+  int32_t b;
+  Foo*    link;
 };
 
 const int test_data_count = 8;
@@ -66,8 +66,8 @@ void output_foo( JsonWriteScope* parent_scope, Foo* foo, const char* foo_name )
   JsonWriteScopeObject json( parent_scope, foo_name );
 
   json.WriteFloat( foo->a, "a" ); 
-  json.WriteInt( foo->b, "b" ); 
-  json.WriteUInt( foo->b, "ub" ); 
+  json.WriteInt32( foo->b, "b" ); 
+  json.WriteUInt32( foo->b, "ub" ); 
 
   if ( foo->b & 0x01 )
   {
@@ -76,6 +76,7 @@ void output_foo( JsonWriteScope* parent_scope, Foo* foo, const char* foo_name )
 
   if ( foo->link )
   {
+    json.WritePointer( foo->link, "linkAddr" );
     output_foo( &json, foo->link, "link" );
   }
 }
