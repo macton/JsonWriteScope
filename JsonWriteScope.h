@@ -187,7 +187,7 @@ class JsonWriteScopeArray : public JsonWriteScope
       }
       else
       {
-        m_Output[0] = '{';
+        m_Output[0] = '[';
         m_OutputSize++;
         m_Output++;
       }
